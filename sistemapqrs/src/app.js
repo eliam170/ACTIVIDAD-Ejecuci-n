@@ -3,17 +3,16 @@ const pqrsRoutes = require('./routes/pqrs.routes');
 
 const app = express();
 const PORT = 3000;
-const HOST = `0.0.0.0`
+const HOST = '0.0.0.0'; 
 
-// Middleware para permitir que Express entienda formato JSON en el cuerpo de las peticiones (req.body)
+// Middleware para procesar JSON en el cuerpo de las peticiones
 app.use(express.json());
 
-// Vincular las rutas con el prefijo /pqrs
+// Conectar las rutas de PQRS directamente a la raíz
 app.use('/', pqrsRoutes);
-app.use('/usuarios', usuariosRoutes);
-app.use('/productos', productosRoutes);
-// Iniciar el servidor escuchando en el puerto definido
-app.listen(PORT, () => {
-    console.log(`servidor backen local`)
-    console.log(`Servidor backend corriendo con éxito en http://localhost:${PORT}`);
+
+// Iniciar servidor en la red local
+app.listen(PORT, HOST, () => {
+    console.log(`Servidor backend corriendo con éxito en la red local.`);
+    console.log(`Accesible en: http://localhost:${PORT}/`);
 });
